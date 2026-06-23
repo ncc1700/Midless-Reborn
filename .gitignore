@@ -1,0 +1,9 @@
+midless.code-workspace
+.vscode/
+bin/
+world/
+.xmake/
+build/
+output/
+mclient
+mserver
