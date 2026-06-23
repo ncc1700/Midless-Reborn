@@ -4,6 +4,8 @@ basically me testing my skills with maintaining an already existing codebase
 
 Ill write a real readme later, for now heres the old one
 
+
+[Link to the original Midless](https://github.com/Sirvoid/Midless)
 # OLD README
 
 ![Image](https://i.imgur.com/4Ku3xak.png)
