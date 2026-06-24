@@ -71,6 +71,13 @@ void Block_BuildDefinition(void) {
 
     Block_Define(18, "wood_slab", 4, 4, 4);
     Block_definition[18].maxBB = (Vector3) {16, 8, 16};
+    Block_Define(19, "obsidian", 18, 18, 18);
+    Block_Define(20, "torch", 19, 19, 19);
+    Block_definition[20].renderType = BlockRenderType_Transparent;
+    Block_definition[20].modelType = BlockModelType_Sprite;
+    Block_definition[20].colliderType = BlockColliderType_None;
+    Block_definition[20].lightType = BlockLightType_Emit;
+
 }
 
 Block Block_GetDefinition(int ID) {

@@ -51,26 +51,41 @@ void Player_Init(void) {
 }
 
 void Player_CheckInputs() {
-    
-    if (IsKeyPressed(KEY_ESCAPE)) {
-        if (Screen_cursorEnabled) {
-            DisableCursor();
-            Chat_open = false;
-            Screen_Switch(SCREEN_GAME);
-        } else {
-            EnableCursor();
-            Screen_Switch(SCREEN_PAUSE);
+    switch(GetKeyPressed()){
+        case KEY_ESCAPE:{
+            if (Screen_cursorEnabled) {
+                DisableCursor();
+                Chat_open = false;
+                Screen_Switch(SCREEN_GAME);
+            } else {
+                EnableCursor();
+                Screen_Switch(SCREEN_PAUSE);
+            }
+            Screen_cursorEnabled = !Screen_cursorEnabled;
+            break;
+        } 
+        case KEY_T:{
+            if (Screen_cursorEnabled && !Chat_open) {
+                DisableCursor();
+                Screen_cursorEnabled = false;
+                Screen_Switch(SCREEN_GAME);
+            } else {
+                Chat_open = true;
+                EnableCursor();
+                Screen_cursorEnabled = true;
+            }
+            break;
         }
-        Screen_cursorEnabled = !Screen_cursorEnabled;
-    } else if (IsKeyPressed(KEY_T)) {
-        if (Screen_cursorEnabled && !Chat_open) {
-            DisableCursor();
-            Screen_cursorEnabled = false;
-            Screen_Switch(SCREEN_GAME);
-        } else {
-            Chat_open = true;
-            EnableCursor();
-            Screen_cursorEnabled = true;
+        case KEY_F3:{
+            if(Screen_showDebug) {
+                Screen_showDebug = false;
+            } else {
+                Screen_showDebug = true;
+            }
+            break;
+        }
+        default:{
+            break;
         }
     }
     
@@ -147,8 +162,8 @@ void Player_CheckInputs() {
         float wheel = GetMouseWheelMove();
         if (wheel > 0.35f) player.blockSelected++;
         if (wheel < -0.35f) player.blockSelected--;
-        if (player.blockSelected > 18) player.blockSelected = 1;
-        if (player.blockSelected < 1) player.blockSelected = 18;
+        if (player.blockSelected > 20) player.blockSelected = 1;
+        if (player.blockSelected < 1) player.blockSelected = 20;
         
         player.rayResult = Raycast_Do(player.camera.position, (Vector3) { forwardX, forwardY, forwardZ}, true);
 
