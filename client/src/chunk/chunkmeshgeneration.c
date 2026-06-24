@@ -114,9 +114,9 @@ void Chunk_AddFace(Chunk *chunk, ChunkMesh *mesh, Vector3 pos, BlockFace face, B
         nextPos.y = ((int)nextPos.y % CHUNK_SIZE_Y + CHUNK_SIZE_Y) % CHUNK_SIZE_Y;
         nextPos.z = ((int)nextPos.z % CHUNK_SIZE_Z + CHUNK_SIZE_Z) % CHUNK_SIZE_Z;
         nextChunk = neighbour;
-        nextBlockID = neighbour->data[Chunk_PosToIndex(nextPos)];
+        nextBlockID = neighbour->data[Chunk_PosToIndex(&nextPos)];
     } else {
-        nextBlockID = chunk->data[Chunk_PosToIndex(nextPos)];
+        nextBlockID = chunk->data[Chunk_PosToIndex(&nextPos)];
     }
 
     Block nextDef = Block_GetDefinition(nextBlockID);

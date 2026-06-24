@@ -388,7 +388,7 @@ void World_FastBlock(Vector3 blockPos, int blockID) {
                                };
     
     if (Chunk_IsValidPos(&blockPosInChunk)) {
-        int index = Chunk_PosToIndex(blockPosInChunk);
+        int index = Chunk_PosToIndex(&blockPosInChunk);
 
         chunk->data[index] = blockID;
     }

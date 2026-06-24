@@ -151,7 +151,7 @@ void Chunk_Generate(Chunk *chunk) {
 
 void Chunk_SetBlock(Chunk *chunk, Vector3 pos, int blockID) {
     if (Chunk_IsValidPos(&pos)) {
-        int index = Chunk_PosToIndex(pos);
+        int index = Chunk_PosToIndex(&pos);
 
         chunk->data[index] = blockID;
         chunk->modified = true;
@@ -169,7 +169,7 @@ void Chunk_SetBlock(Chunk *chunk, Vector3 pos, int blockID) {
 
 int Chunk_GetBlock(Chunk *chunk, Vector3 pos) {
     if (Chunk_IsValidPos(&pos)) {
-        return chunk->data[Chunk_PosToIndex(pos)];
+        return chunk->data[Chunk_PosToIndex(&pos)];
     }
     return 0;
 }
@@ -335,8 +335,8 @@ Vector3 Chunk_IndexToPos(int index) {
     return (Vector3){x, y, z};
 }
 
-int Chunk_PosToIndex(Vector3 pos) {
-    return ((int)pos.y * CHUNK_SIZE_Z + (int)pos.z) * CHUNK_SIZE_X + (int)pos.x;
+int Chunk_PosToIndex(Vector3* pos) {
+    return ((int)pos->y * CHUNK_SIZE_Z + (int)pos->z) * CHUNK_SIZE_X + (int)pos->x;
 }
 
 long int Chunk_GetPackedPos(Vector3 pos) {

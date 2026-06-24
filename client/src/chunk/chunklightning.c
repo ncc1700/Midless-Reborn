@@ -39,7 +39,7 @@ Vector3 lightDirectionsXChunk[6] = {
 
 int Chunk_GetLight(Chunk* chunk, Vector3 pos, bool sunLight) {
     if (!Chunk_IsValidPos(&pos)) return 15;
-    int index = Chunk_PosToIndex(pos);
+    int index = Chunk_PosToIndex(&pos);
     if (sunLight) {
         return chunk->sunlightData[index];
     } else {
@@ -174,7 +174,7 @@ void Chunk_SpreadLight(bool sunlight) {
                 if (!nextChunk->isMapGenerated) continue;
             }
 
-            int nextIndex = Chunk_PosToIndex(nextPos);
+            int nextIndex = Chunk_PosToIndex(&nextPos);
             int nextLight = Chunk_GetLightLevel(nextChunk, nextIndex, sunlight);
             
             Block blockDefinition = Block_GetDefinition(nextChunk->data[nextIndex]);
@@ -217,7 +217,7 @@ void Chunk_UpdateLight(bool sunlight) {
             }
             if (nextChunk == NULL) continue;
 
-            int nextIndex = Chunk_PosToIndex(nextPos);
+            int nextIndex = Chunk_PosToIndex(&nextPos);
             int neighborLevel = Chunk_GetLightLevel(nextChunk, nextIndex, sunlight);
 
             if ((neighborLevel != 0 && neighborLevel < lightLevel) || (lightLevel != 0 && d == 3 && sunlight == true)) {
@@ -238,7 +238,7 @@ void Chunk_UpdateLight(bool sunlight) {
 void Chunk_AddLightSource(Chunk *srcChunk, Vector3 srcPos, int intensity, bool sunlight) {
     if (srcChunk == NULL) return;
 
-    int srcIndex = Chunk_PosToIndex(srcPos);
+    int srcIndex = Chunk_PosToIndex(&srcPos);
     
     Chunk_SetLightLevel(srcChunk, srcIndex, intensity, sunlight);
     Chunk_LightQueueAdd(srcIndex, srcChunk);
@@ -248,7 +248,7 @@ void Chunk_AddLightSource(Chunk *srcChunk, Vector3 srcPos, int intensity, bool s
 void Chunk_RemoveLightSource(Chunk *srcChunk, Vector3 srcPos) {
     if (srcChunk == NULL) return;
 
-    int srcIndex = Chunk_PosToIndex(srcPos);
+    int srcIndex = Chunk_PosToIndex(&srcPos);
 
     int srcVal = Chunk_GetLightLevel(srcChunk, srcIndex, false);
     Chunk_LightDelQueueAdd(srcIndex, srcVal, srcChunk);
@@ -259,7 +259,7 @@ void Chunk_RemoveLightSource(Chunk *srcChunk, Vector3 srcPos) {
 void Chunk_RemoveSunlight(Chunk *srcChunk, Vector3 srcPos) {
     if (srcChunk == NULL) return;
 
-    int srcIndex = Chunk_PosToIndex(srcPos);
+    int srcIndex = Chunk_PosToIndex(&srcPos);
 
     int srcVal = srcVal = Chunk_GetLightLevel(srcChunk, srcIndex, true);
     Chunk_LightDelQueueAdd(srcIndex, srcVal, srcChunk);

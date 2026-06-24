@@ -86,7 +86,7 @@ int Chunk_GetBlock(Chunk *chunk, Vector3 pos);
 //Check if block position is valid in chunk.
 bool Chunk_IsValidPos(Vector3* pos);
 //Convert block position to index.
-int Chunk_PosToIndex(Vector3 pos);
+int Chunk_PosToIndex(Vector3* pos);
 //convert index to block position.
 Vector3 Chunk_IndexToPos(int index);
 //Pack chunk position into a 32 bit number.
