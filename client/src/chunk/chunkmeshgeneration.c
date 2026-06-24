@@ -12,6 +12,9 @@
 #include <chunk/chunklightning.h>
 #include <block/blockmeshgeneration.h>
 
+
+#define V3_ADD(r, a, b) r.x = a.x+b.x;r.y=a.y+b.y;r.z=a.z+b.z;
+
 int Chunk_triangleCounter = 0;
 int Chunk_triangleCounterTransparent = 0;
 
@@ -96,12 +99,15 @@ void Chunk_AddCube(Chunk *chunk, ChunkMesh *mesh, Vector3 pos, Block blockDef) {
 }
 
 void Chunk_AddFace(Chunk *chunk, ChunkMesh *mesh, Vector3 pos, BlockFace face, Block blockDef) {
-    Vector3 faceDir = BlockMesh_GetDirection(face);
-    Vector3 nextPos = Vector3Add(pos, faceDir);
+    Vector3 faceDir = {0};
+    BlockMesh_GetDirection(&faceDir, face);
+    Vector3 nextPos = {0};
+    V3_ADD(nextPos, pos, faceDir);
+    //nextPos.x = pos.x + //Vector3Add(pos, faceDir);
     Chunk *nextChunk = chunk;
 
     int nextBlockID = 0;
-    if (!Chunk_IsValidPos(nextPos)) {
+    if (!Chunk_IsValidPos(&nextPos)) {
         Chunk *neighbour = chunk->neighbours[(int)face];
         if (neighbour == NULL) return;
         nextPos.x = ((int)nextPos.x % CHUNK_SIZE_X + CHUNK_SIZE_X) % CHUNK_SIZE_X;

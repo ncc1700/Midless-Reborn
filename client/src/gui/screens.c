@@ -171,7 +171,7 @@ void Screen_MakeOptions(void) {
     const char* drawDistanceTxt = TextFormat("Draw Distance: %i", world.drawDistance);
 
     //Draw distance Button
-    int newDrawDistance = 0;//GuiSlider((Rectangle) {offsetX, offsetY, 200, 30 }, "", "", world.drawDistance, 2, 16);
+    int newDrawDistance = 10;//GuiSlider((Rectangle) {offsetX, offsetY, 200, 30 }, "", "", world.drawDistance, 2, 16);
     Vector2 sizeText = MeasureTextEx(GetFontDefault(), drawDistanceTxt, 10.0f, 1);
     DrawTextEx(GetFontDefault(), drawDistanceTxt, (Vector2){offsetX + 100 - sizeText.x / 2 + 1, offsetY + 15 - sizeText.y / 2 + 1}, 10.0f, 1, BLACK);
     DrawTextEx(GetFontDefault(), drawDistanceTxt, (Vector2){offsetX + 100 - sizeText.x / 2, offsetY + 15 - sizeText.y / 2}, 10.0f, 1, WHITE);
@@ -245,7 +245,7 @@ void Screen_MakeLogin(void) {
     if(IsCursorHidden()) EnableCursor();
     DrawRectangle(0, 0, screenWidth, screenHeight, BLACK);
 
-    const char *title = "MIDLESS";
+    const char *title = "Midless Reborn";
     int offsetY = screenHeight / 2;
     int offsetX = screenWidth / 2;
 

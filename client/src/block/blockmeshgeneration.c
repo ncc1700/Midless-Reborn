@@ -23,22 +23,51 @@ int BFH_indicesI[] = {0, 0};
 
 
 
-Vector3 BlockMesh_GetDirection(BlockFace face) {
+void BlockMesh_GetDirection(Vector3* direction, BlockFace face) {
     switch (face) {
-        case BlockFace_Left:
-            return (Vector3){ -1, 0, 0 };
-        case BlockFace_Right:
-            return (Vector3){ 1, 0, 0 };
-        case BlockFace_Bottom:
-            return (Vector3){ 0, -1, 0 };
-        case BlockFace_Top:
-            return (Vector3){ 0, 1, 0 };
-        case BlockFace_Back:
-            return (Vector3){ 0, 0, -1 };
-        case BlockFace_Front:
-            return (Vector3){ 0, 0, 1 };
+        case BlockFace_Left:{
+            direction->x = -1;
+            direction->y = 0;
+            direction->z = 0;
+            break;
+        }
+        case BlockFace_Right:{
+            direction->x = 1;
+            direction->y = 0;
+            direction->z = 0;
+            break;
+        }
+        case BlockFace_Bottom:{
+            direction->x = 0;
+            direction->y = -1;
+            direction->z = 0;
+            break;
+        }
+        case BlockFace_Top:{
+            direction->x = 0;
+            direction->y = 1;
+            direction->z = 0;
+            break;
+        }
+        case BlockFace_Back:{
+            direction->x = 0;
+            direction->y = 0;
+            direction->z = -1;
+            break;
+        }
+        case BlockFace_Front:{
+            direction->x = 0;
+            direction->y = 0;
+            direction->z = 1;
+            break;
+        }
+        default:{
+            direction->x = 0;
+            direction->y = 0;
+            direction->z = 0;
+            break;
+        }
     }
-    return (Vector3){ 0, 0, 0 };
 }
 
 void BlockMesh_ResetIndexes(void) {

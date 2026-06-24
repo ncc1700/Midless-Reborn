@@ -150,7 +150,7 @@ void Chunk_Generate(Chunk *chunk) {
 
 
 void Chunk_SetBlock(Chunk *chunk, Vector3 pos, int blockID) {
-    if (Chunk_IsValidPos(pos)) {
+    if (Chunk_IsValidPos(&pos)) {
         int index = Chunk_PosToIndex(pos);
 
         chunk->data[index] = blockID;
@@ -168,7 +168,7 @@ void Chunk_SetBlock(Chunk *chunk, Vector3 pos, int blockID) {
 }
 
 int Chunk_GetBlock(Chunk *chunk, Vector3 pos) {
-    if (Chunk_IsValidPos(pos)) {
+    if (Chunk_IsValidPos(&pos)) {
         return chunk->data[Chunk_PosToIndex(pos)];
     }
     return 0;
@@ -324,8 +324,8 @@ bool Chunk_AreNeighbourBuilding(Chunk* chunk) {
     return false;
 }
 
-bool Chunk_IsValidPos(Vector3 pos) {
-    return pos.x >= 0 && pos.x < CHUNK_SIZE_X && pos.y >= 0 && pos.y < CHUNK_SIZE_Y && pos.z >= 0 && pos.z < CHUNK_SIZE_Z;
+bool Chunk_IsValidPos(Vector3* pos) {
+    return pos->x >= 0 && pos->x < CHUNK_SIZE_X && pos->y >= 0 && pos->y < CHUNK_SIZE_Y && pos->z >= 0 && pos->z < CHUNK_SIZE_Z;
 }
 
 Vector3 Chunk_IndexToPos(int index) {

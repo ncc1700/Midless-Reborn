@@ -43,7 +43,7 @@ void Chunk_RemovePlayer(Chunk* chunk, int index);
 void Chunk_SetBlock(Chunk *chunk, Vector3 pos, int blockID);
 int Chunk_GetBlock(Chunk *chunk, Vector3 pos);
 
-bool Chunk_IsValidPos(Vector3 pos);
+bool Chunk_IsValidPos(Vector3* pos);
 Vector3 Chunk_IndexToPos(int index);
 int Chunk_PosToIndex(Vector3 pos);
 long int Chunk_GetPackedPos(Vector3 pos);

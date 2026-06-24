@@ -84,7 +84,7 @@ void Chunk_SetBlock(Chunk *chunk, Vector3 pos, int blockID);
 //Get a block ID in a chunk.
 int Chunk_GetBlock(Chunk *chunk, Vector3 pos);
 //Check if block position is valid in chunk.
-bool Chunk_IsValidPos(Vector3 pos);
+bool Chunk_IsValidPos(Vector3* pos);
 //Convert block position to index.
 int Chunk_PosToIndex(Vector3 pos);
 //convert index to block position.

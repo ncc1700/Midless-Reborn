@@ -38,7 +38,7 @@ Vector3 lightDirectionsXChunk[6] = {
 };
 
 int Chunk_GetLight(Chunk* chunk, Vector3 pos, bool sunLight) {
-    if (!Chunk_IsValidPos(pos)) return 15;
+    if (!Chunk_IsValidPos(&pos)) return 15;
     int index = Chunk_PosToIndex(pos);
     if (sunLight) {
         return chunk->sunlightData[index];
@@ -167,7 +167,7 @@ void Chunk_SpreadLight(bool sunlight) {
             Chunk *nextChunk = chunk;
 
             //Goto neighbour chunk if out of bounds
-            if (!Chunk_IsValidPos(nextPos)) {
+            if (!Chunk_IsValidPos(&nextPos)) {
                 nextChunk = chunk->neighbours[d];
                 nextPos = Vector3Subtract(nextPos, lightDirectionsXChunk[d]); 
                 if (nextChunk == NULL) continue;
@@ -211,7 +211,7 @@ void Chunk_UpdateLight(bool sunlight) {
             Chunk *nextChunk = chunk;
 
             //Goto neighbour chunk if out of bounds
-            if (!Chunk_IsValidPos(nextPos)) {
+            if (!Chunk_IsValidPos(&nextPos)) {
                 nextChunk = chunk->neighbours[d];
                 nextPos = Vector3Subtract(nextPos, lightDirectionsXChunk[d]); 
             }
